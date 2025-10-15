@@ -14,12 +14,14 @@ import { getFirestore } from 'firebase/firestore';
 // TODO: Replace with your Firebase config
 // You can find this in: Project Settings > General > Your apps > Firebase SDK snippet
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_PROJECT_ID.appspot.com",
-  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-  appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyAllT8uxN-kz7ZFbl-Gc4-GAp0z_ejbokM",
+  authDomain: "intern-track-8db04.firebaseapp.com",
+  projectId: "intern-track-8db04",
+  storageBucket: "intern-track-8db04.firebasestorage.app",
+  messagingSenderId: "542477493733",
+  appId: "1:542477493733:web:5bfd3ed411bef15af83b0c",
+  measurementId: "G-WZH29GE5FB"
+
 };
 
 // Initialize Firebase
