@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { collection, query, orderBy, onSnapshot, doc, updateDoc, arrayUnion, arrayRemove, deleteDoc, addDoc, Timestamp } from 'firebase/firestore';
+import { collection, query, orderBy, onSnapshot, doc, updateDoc, arrayUnion, arrayRemove, deleteDoc, addDoc, Timestamp, where } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
 import { useAuth } from '@/contexts/AuthContext';
 import { Post, SavedPost } from '@/types';
@@ -25,7 +25,7 @@ const Feed = () => {
 
   // Fetch posts
   useEffect(() => {
-    const q = query(collection(db, 'posts'), orderBy('createdAt', 'desc'));
+    const q = query(collection(db, 'posts'), where('status', '==', 'approved'));
     
     const unsubscribe = onSnapshot(q, (snapshot) => {
       const fetchedPosts: Post[] = [];

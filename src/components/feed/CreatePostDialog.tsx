@@ -92,6 +92,7 @@ const CreatePostDialog = ({ open, onClose, onSuccess }: CreatePostDialogProps) =
         likes: [],
         comments: [],
         shares: 0,
+        status: 'pending',
         createdAt: Timestamp.now(),
         updatedAt: Timestamp.now(),
       };
@@ -123,8 +124,8 @@ const CreatePostDialog = ({ open, onClose, onSuccess }: CreatePostDialogProps) =
       await addDoc(collection(db, 'posts'), postData);
 
       toast({
-        title: "Post created!",
-        description: "Your post has been published successfully",
+        title: "Post submitted for review!",
+        description: "Your post will be published after admin approval.",
       });
 
       onSuccess();

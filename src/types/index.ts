@@ -55,6 +55,7 @@ export interface Post {
   likes: string[]; // Array of user IDs
   comments: Comment[];
   shares: number;
+  status: 'pending' | 'approved' | 'rejected';
   
   createdAt: Date;
   updatedAt: Date;

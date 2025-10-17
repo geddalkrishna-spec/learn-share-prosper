@@ -10,12 +10,18 @@ import Feed from "@/pages/Feed";
 import Profile from "@/pages/Profile";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
+import AdminReview from "./pages/AdminReview";
 
 const queryClient = new QueryClient();
 
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   const { currentUser } = useAuth();
   return currentUser ? <>{children}</> : <Navigate to="/login" />;
+};
+
+const AdminRoute = ({ children }: { children: React.ReactNode }) => {
+  const { userData } = useAuth();
+  return userData?.isAdmin ? <>{children}</> : <Navigate to="/feed" />;
 };
 
 const PublicRoute = ({ children }: { children: React.ReactNode }) => {
@@ -37,6 +43,7 @@ const AppRoutes = () => {
       <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
       <Route path="/settings" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
       <Route path="/notifications" element={<ProtectedRoute><Feed /></ProtectedRoute>} />
+      <Route path="/admin/review" element={<AdminRoute><AdminReview /></AdminRoute>} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

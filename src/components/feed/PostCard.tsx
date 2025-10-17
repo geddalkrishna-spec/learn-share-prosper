@@ -26,9 +26,10 @@ interface PostCardProps {
   onShare: (postId: string) => void;
   onDelete?: (postId: string) => void;
   isSaved: boolean;
+  showStatus?: boolean;
 }
 
-const PostCard = ({ post, onLike, onSave, onShare, onDelete, isSaved }: PostCardProps) => {
+const PostCard = ({ post, onLike, onSave, onShare, onDelete, isSaved, showStatus = false }: PostCardProps) => {
   const { userData } = useAuth();
   const navigate = useNavigate();
   const [showFullContent, setShowFullContent] = useState(false);
@@ -100,9 +101,16 @@ const PostCard = ({ post, onLike, onSave, onShare, onDelete, isSaved }: PostCard
           {post.company && (
             <div className="flex items-center text-muted-foreground text-sm mb-2">
               <Briefcase className="h-4 w-4 mr-1" />
-              <span className="font-medium">{post.company}</span>
-              {post.location && (
-                <>
+                          <span className="font-medium">{post.company}</span>
+                          {showStatus && (
+                            <Badge
+                              variant={post.status === 'approved' ? 'default' : post.status === 'pending' ? 'secondary' : 'destructive'}
+                              className="ml-2"
+                            >
+                              {post.status}
+                            </Badge>
+                          )}
+                          {post.location && (                <>
                   <span className="mx-2">•</span>
                   <MapPin className="h-4 w-4 mr-1" />
                   <span>{post.location}</span>

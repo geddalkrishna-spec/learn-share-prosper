@@ -12,7 +12,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { GraduationCap, Search, Plus, Bell, LogOut, User, Settings } from 'lucide-react';
+import { GraduationCap, Search, Plus, Bell, LogOut, User, Settings, ShieldCheck } from 'lucide-react';
 
 interface NavbarProps {
   onCreatePost: () => void;
@@ -120,6 +120,12 @@ const Navbar = ({ onCreatePost, onSearch, unreadNotifications }: NavbarProps) =>
                   <Settings className="mr-2 h-4 w-4" />
                   Settings
                 </DropdownMenuItem>
+                {userData?.isAdmin && (
+                  <DropdownMenuItem onClick={() => navigate('/admin/review')}>
+                    <ShieldCheck className="mr-2 h-4 w-4" />
+                    Admin Review
+                  </DropdownMenuItem>
+                )}
                 <DropdownMenuSeparator />
                 <DropdownMenuItem onClick={handleLogout} className="text-destructive">
                   <LogOut className="mr-2 h-4 w-4" />
