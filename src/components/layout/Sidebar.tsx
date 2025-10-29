@@ -1,8 +1,9 @@
 import { Link, useLocation } from 'react-router-dom';
 import { cn } from '@/lib/utils';
-import { Home, Briefcase, Users, BookOpen, Bookmark, User, Settings } from 'lucide-react';
+import { useAuth } from '@/contexts/AuthContext';
+import { Home, Briefcase, Users, BookOpen, Bookmark, User, Settings, ShieldCheck } from 'lucide-react';
 
-const menuItems = [
+const baseMenuItems = [
   { icon: Home, label: 'Feed', path: '/feed' },
   { icon: Briefcase, label: 'Internships', path: '/internships' },
   { icon: Users, label: 'Recruitment', path: '/recruitment' },
@@ -14,6 +15,12 @@ const menuItems = [
 
 const Sidebar = () => {
   const location = useLocation();
+  const { userData } = useAuth();
+
+  const menuItems = [
+    ...baseMenuItems,
+    ...(userData?.isAdmin ? [{ icon: ShieldCheck, label: 'Admin Review', path: '/admin/review' }] : []),
+  ];
 
   return (
     <aside className="hidden lg:block w-64 border-r border-border bg-card/50">

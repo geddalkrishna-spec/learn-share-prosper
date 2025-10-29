@@ -237,6 +237,7 @@ const Profile = () => {
                     onSave={() => {}}
                     onShare={() => {}}
                     isSaved={false}
+                    showStatus={true}
                   />
                 ))
               )}
